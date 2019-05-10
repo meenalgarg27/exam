@@ -1,6 +1,9 @@
 package com.game.transformers.model;
 
+import javax.validation.Valid;
+
 public class TransformerRequest {
+	@Valid
 	private Transformer transformer;
 
 	/**
@@ -11,11 +14,11 @@ public class TransformerRequest {
 	}
 
 	/**
-	 * @param transformer the transformer to set
+	 * @param transformer
+	 *            the transformer to set
 	 */
 	public void setTransformer(Transformer transformer) {
 		this.transformer = transformer;
 	}
-	
 
 }

@@ -1,5 +1,8 @@
 package com.game.transformers.controller;
 
+
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,17 +31,17 @@ public class GameController {
 	 */
 
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody TransformerResponse createTransformer(@RequestBody TransformerRequest transformerRequest) {
+	public @ResponseBody TransformerResponse createTransformer(@Valid @RequestBody TransformerRequest transformerRequest) {
 		return gameService.createTransformer(transformerRequest.getTransformer());
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
-	public @ResponseBody TransformerResponse updateTransformer(@RequestBody TransformerRequest transformerRequest) {
+	public @ResponseBody TransformerResponse updateTransformer(@Valid @RequestBody TransformerRequest transformerRequest) {
 		return gameService.createTransformer(transformerRequest.getTransformer());
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
-	public @ResponseBody TransformerResponse deleteTransformer(@RequestBody TransformerRequest transformerRequest) {
+	public @ResponseBody TransformerResponse deleteTransformer(@Valid @RequestBody TransformerRequest transformerRequest) {
 		return gameService.createTransformer(transformerRequest.getTransformer());
 	}	
 	
