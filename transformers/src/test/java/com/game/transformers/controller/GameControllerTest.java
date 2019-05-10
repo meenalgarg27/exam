@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.game.transformers.model.ApplicationResponse;
 import com.game.transformers.model.TechSpecModel;
 import com.game.transformers.model.Transformer;
 import com.game.transformers.model.TransformerRequest;
@@ -50,7 +51,7 @@ public class GameControllerTest {
 		techSpecs.setSkill(10);
 		transformer.setTechSpecs(techSpecs);
 		transformerRequest.setTransformer(transformer);
-		TransformerResponse transformerResponse = new TransformerResponse();
+		ApplicationResponse transformerResponse = new ApplicationResponse();
 		when(gameService.createTransformer(transformerRequest.getTransformer())).thenReturn(transformerResponse);
 		mockMvc.perform(post("/api/transformer").content(asJsonString(transformerRequest))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());

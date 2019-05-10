@@ -1,56 +1,21 @@
 package com.game.transformers.model;
 
-import java.util.List;
-
 public class TransformerResponse {
-
-	private List<Link> links;
-	private Data data;
-	private ApiError error;
+	
+	private Long id;
 
 	/**
-	 * @return the links
+	 * @return the id
 	 */
-	public List<Link> getLinks() {
-		return links;
+	public Long getId() {
+		return id;
 	}
 
 	/**
-	 * @return the data
+	 * @param id the id to set
 	 */
-	public Data getData() {
-		return data;
+	public void setId(Long id) {
+		this.id = id;
 	}
-
-	/**
-	 * @return the error
-	 */
-	public ApiError getError() {
-		return error;
-	}
-
-	/**
-	 * @param links
-	 *            the links to set
-	 */
-	public void setLinks(List<Link> links) {
-		this.links = links;
-	}
-
-	/**
-	 * @param data
-	 *            the data to set
-	 */
-	public void setData(Data data) {
-		this.data = data;
-	}
-
-	/**
-	 * @param error
-	 *            the error to set
-	 */
-	public void setError(ApiError error) {
-		this.error = error;
-	}
-
+	
 }

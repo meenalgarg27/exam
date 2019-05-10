@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.game.transformers.model.ApplicationResponse;
 import com.game.transformers.model.TransformerRequest;
-import com.game.transformers.model.TransformerResponse;
 import com.game.transformers.service.GameService;
 
 @RestController
@@ -31,22 +31,22 @@ public class GameController {
 	 */
 
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody TransformerResponse createTransformer(@Valid @RequestBody TransformerRequest transformerRequest) {
+	public @ResponseBody ApplicationResponse createTransformer(@Valid @RequestBody TransformerRequest transformerRequest) {
 		return gameService.createTransformer(transformerRequest.getTransformer());
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
-	public @ResponseBody TransformerResponse updateTransformer(@Valid @RequestBody TransformerRequest transformerRequest) {
+	public @ResponseBody ApplicationResponse updateTransformer(@Valid @RequestBody TransformerRequest transformerRequest) {
 		return gameService.createTransformer(transformerRequest.getTransformer());
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
-	public @ResponseBody TransformerResponse deleteTransformer(@Valid @RequestBody TransformerRequest transformerRequest) {
+	public @ResponseBody ApplicationResponse deleteTransformer(@Valid @RequestBody TransformerRequest transformerRequest) {
 		return gameService.createTransformer(transformerRequest.getTransformer());
 	}	
 	
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody TransformerResponse listTransformers() {
+	public @ResponseBody ApplicationResponse listTransformers() {
 		return gameService.getTransformers();
 	}	
 }
