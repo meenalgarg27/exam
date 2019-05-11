@@ -28,7 +28,7 @@ public class TransformerEntity {
 	private int speed;
 	@Column
 	private int endurance;
-	@Column
+	@Column(name= "TRANSFORMER_RANK")
 	private int rank;
 	@Column
 	private int courage;
@@ -118,91 +118,82 @@ public class TransformerEntity {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @param name
-	 *            the name to set
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * @param strength
-	 *            the strength to set
+	 * @param strength the strength to set
 	 */
 	public void setStrength(int strength) {
 		this.strength = strength;
 	}
 
 	/**
-	 * @param intelligence
-	 *            the intelligence to set
+	 * @param intelligence the intelligence to set
 	 */
 	public void setIntelligence(int intelligence) {
 		this.intelligence = intelligence;
 	}
 
 	/**
-	 * @param speed
-	 *            the speed to set
+	 * @param speed the speed to set
 	 */
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
 
 	/**
-	 * @param endurance
-	 *            the endurance to set
+	 * @param endurance the endurance to set
 	 */
 	public void setEndurance(int endurance) {
 		this.endurance = endurance;
 	}
 
 	/**
-	 * @param rank
-	 *            the rank to set
+	 * @param rank the rank to set
 	 */
 	public void setRank(int rank) {
 		this.rank = rank;
 	}
 
 	/**
-	 * @param courage
-	 *            the courage to set
+	 * @param courage the courage to set
 	 */
 	public void setCourage(int courage) {
 		this.courage = courage;
 	}
 
 	/**
-	 * @param firepower
-	 *            the firepower to set
+	 * @param firepower the firepower to set
 	 */
 	public void setFirepower(int firepower) {
 		this.firepower = firepower;
 	}
 
 	/**
-	 * @param skill
-	 *            the skill to set
+	 * @param skill the skill to set
 	 */
 	public void setSkill(int skill) {
 		this.skill = skill;
 	}
 
 	/**
-	 * @param type
-	 *            the type to set
+	 * @param type the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
 	}
-
+	
+	
+	
 }

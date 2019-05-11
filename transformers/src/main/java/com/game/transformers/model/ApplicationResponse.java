@@ -2,10 +2,14 @@ package com.game.transformers.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class ApplicationResponse {
 
 	private List<Link> links;
-	private TransformerResponse data;
+	private List<TransformerResponse> data;
 	private ApiError error;
 
 	/**
@@ -44,7 +48,7 @@ public class ApplicationResponse {
 	/**
 	 * @return the data
 	 */
-	public TransformerResponse getData() {
+	public List<TransformerResponse> getData() {
 		return data;
 	}
 
@@ -52,8 +56,9 @@ public class ApplicationResponse {
 	/**
 	 * @param data the data to set
 	 */
-	public void setData(TransformerResponse data) {
+	public void setData(List<TransformerResponse> data) {
 		this.data = data;
 	}
+
 
 }
