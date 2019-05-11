@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,37 +16,44 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.game.transformers.model.ApiError;
 
 @ControllerAdvice
-public class TransformerErrorHandler extends ResponseEntityExceptionHandler{
-	 @Override
-	   protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-	       String error = "Malformed JSON request";
-	       return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
-	   }
-	 
-	   private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
-	       return new ResponseEntity<>(apiError, apiError.getStatus());
-	   }
-	   
-	   @ExceptionHandler(ConstraintViolationException.class)
-	   @ResponseStatus(HttpStatus.BAD_REQUEST)
-	   ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
-	     return new ResponseEntity<>("not valid due to validation error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
-	   }
-	   
-	   @ExceptionHandler(Exception.class)
-	   @ResponseStatus(HttpStatus.BAD_REQUEST)
-	   ResponseEntity<String> handleCommonException(Exception e) {
-	     return new ResponseEntity<>("not valid due to validation error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
-	   }
+public class TransformerErrorHandler extends ResponseEntityExceptionHandler {
+	@Override
+	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+		String error = "Malformed JSON request";
+		return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
+	}
 
-	   
-	 /*  @ExceptionHandler(EntityNotFoundException.class)
-	   protected ResponseEntity<Object> handleEntityNotFound(
-	           EntityNotFoundException ex) {
-	       ApiError apiError = new ApiError(NOT_FOUND);
-	       apiError.setMessage(ex.getMessage());
-	       return buildResponseEntity(apiError);
-	   }*/
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-	   //other exception handlers below
+		String error = "Invalid request";
+		return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
+	}
+
+	@ExceptionHandler(ConstraintViolationException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException e) {
+		String error = "not valid due to validation error";
+		return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, e));
+	}
+
+	@ExceptionHandler(Exception.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	ResponseEntity<Object> handleCommonException(Exception e) {
+		String error = "common error";
+		return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, e));
+	}
+
+	@ExceptionHandler(ApplicationException.class)
+	protected ResponseEntity<Object> handleEntityNotFound(ApplicationException ex) {
+		ApiError apiError = new ApiError(HttpStatus.NOT_FOUND);
+		apiError.setMessage(ex.getMessage());
+		return buildResponseEntity(apiError);
+	}
+
+	private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
+		return new ResponseEntity<>(apiError, apiError.getStatus());
+	}
 }
